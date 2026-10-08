@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marvin Mayard — Urbaniste</title>
+  <meta name="description" content="Marvin Mayard est urbaniste. Articles, photographies, cartographies et notes sur les villes et les territoires.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://marvinmayard.fr/">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Marvin Mayard — Urbaniste">
+  <meta property="og:description" content="Articles, photographies, cartographies et notes sur les villes et les territoires.">
+  <meta property="og:url" content="https://marvinmayard.fr/">
+  <meta property="og:image" content="https://revuesurmesure.fr/media/pages/contributions/ce-qui-reste-apres-le-lieu/7829c76e81-1780255947/facade-2020.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marvin Mayard",
+    "url": "https://marvinmayard.fr/",
+    "jobTitle": "Urbaniste",
+    "alumniOf": [
+      {"@type":"CollegeOrUniversity","name":"Sciences Po Paris"},
+      {"@type":"CollegeOrUniversity","name":"Université Paris 1 Panthéon-Sorbonne"}
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/in/marvin-mayard/",
+      "https://www.revuesurmesure.fr/authors/marvin-mayard"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --ink: rgba(0, 0, 0, .86);
+      --muted: rgba(0, 0, 0, .42);
+      --line: rgba(0, 0, 0, .14);
+      --page: #fff;
+      --pad: clamp(14px, 1.15vw, 20px);
+      --ui:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--page); color: var(--ink); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--ui);
+      font-size: 15px;
+      line-height: 1.22;
+      letter-spacing: -.01em;
+      -webkit-font-smoothing: antialiased;
+      background: var(--page);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover, button:hover { text-decoration: underline; text-underline-offset: .16em; }
+    button { font: inherit; color: inherit; }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 20;
+      padding: var(--pad);
+      background: linear-gradient(to bottom, #fff 72%, rgba(255,255,255,0));
+      pointer-events: none;
+    }
+
+    .site-header__inner {
+      max-width: 1480px;
+      pointer-events: auto;
+    }
+
+    .intro {
+      margin: 0;
+      max-width: 1180px;
+    }
+
+    .intro strong { font-weight: 700; }
+    .intro a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .13em; }
+
+    .carousel-shell {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: clamp(145px, 18vh, 205px) var(--pad) clamp(105px, 14vh, 150px);
+      overflow: hidden;
+    }
+
+    .carousel {
+      width: min(100%, 1480px);
+      position: relative;
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr) 46px;
+      align-items: center;
+      gap: clamp(8px, 1.3vw, 22px);
+    }
+
+    .carousel__viewport {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .carousel__track {
+      display: flex;
+      transition: transform 420ms cubic-bezier(.22,.74,.2,1);
+      will-change: transform;
+    }
+
+    .slide {
+      min-width: 100%;
+      display: grid;
+      place-items: center;
+      gap: 11px;
+      opacity: .22;
+      transition: opacity 240ms ease;
+    }
+    .slide[aria-hidden="false"] { opacity: 1; }
+
+    .slide__link,
+    .slide__visual {
+      display: block;
+      width: min(100%, 1040px);
+      margin: auto;
+    }
+
+    .slide__image {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: min(62vh, 650px);
+      object-fit: contain;
+      margin: auto;
+      background: #f3f3f1;
+    }
+
+    .slide__image--portrait { max-height: min(58vh, 610px); }
+
+    .slide__caption {
+      width: min(100%, 1040px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .slide__caption-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+    .slide__caption-meta { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+
+    .placeholder-map {
+      height: min(58vh, 610px);
+      min-height: 360px;
+      position: relative;
+      overflow: hidden;
+      background-color: #f3f3f0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 42px 42px;
+      border: 1px solid rgba(0,0,0,.06);
+    }
+
+    .placeholder-map::before,
+    .placeholder-map::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(0,0,0,.5);
+      border-radius: 50%;
+    }
+    .placeholder-map::before { width: 38%; aspect-ratio: 1.5; left: 12%; top: 20%; transform: rotate(-14deg); border-radius: 48% 52% 54% 46%; }
+    .placeholder-map::after { width: 26%; aspect-ratio: 1.2; right: 12%; bottom: 16%; transform: rotate(18deg); border-radius: 62% 38% 44% 56%; }
+
+    .placeholder-map__label {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+      font-size: clamp(28px, 4vw, 62px);
+      font-weight: 700;
+      letter-spacing: -.045em;
+    }
+    .placeholder-map__label small {
+      display: block;
+      margin-top: 9px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: var(--muted);
+    }
+
+    .nav-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      text-decoration: none !important;
+    }
+    .nav-btn svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.3; }
+    .nav-btn:focus-visible, a:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+
+    .site-footer {
+      position: fixed;
+      inset: auto 0 0 0;
+      z-index: 20;
+      padding: var(--pad);
+      background: linear-gradient(to top, #fff 66%, rgba(255,255,255,0));
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      pointer-events: none;
+      font-size: 12px;
+    }
+    .site-footer > * { pointer-events: auto; }
+    .footer-right { color: var(--muted); text-align: right; }
+
+    .about-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      padding: var(--pad);
+      background: rgba(255,255,255,.98);
+      display: none;
+      overflow: auto;
+    }
+    .about-panel[data-open="true"] { display: block; }
+    .about-grid {
+      min-height: calc(100vh - 2 * var(--pad));
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 560px);
+      align-items: start;
+      gap: clamp(35px, 8vw, 140px);
+    }
+    .about-copy {
+      max-width: 920px;
+      font-size: clamp(24px, 3.35vw, 56px);
+      line-height: .98;
+      letter-spacing: -.045em;
+      font-weight: 650;
+    }
+    .about-copy p { margin: 0; }
+    .about-meta { align-self: end; padding-bottom: 8px; }
+    .about-meta p { max-width: 48ch; margin: 0 0 1em; }
+    .about-meta a { text-decoration: underline; text-underline-offset: .15em; }
+    .panel-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 0 0 18px 18px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 760px) {
+      body { font-size: 14px; }
+      .site-header { background: rgba(255,255,255,.95); }
+      .intro { max-width: none; }
+      .carousel-shell { padding-top: 195px; padding-bottom: 105px; }
+      .carousel { grid-template-columns: 34px minmax(0,1fr) 34px; gap: 2px; }
+      .nav-btn { width: 34px; height: 44px; }
+      .nav-btn svg { width: 20px; }
+      .slide__caption { grid-template-columns: auto 1fr; gap: 6px 10px; }
+      .slide__caption-meta { grid-column: 2; }
+      .slide__image { max-height: 48vh; }
+      .placeholder-map { min-height: 310px; height: 46vh; }
+      .site-footer { background: rgba(255,255,255,.96); }
+      .footer-right { max-width: 42%; }
+      .about-grid { grid-template-columns: 1fr; min-height: auto; }
+      .about-meta { align-self: start; padding-top: 40px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .carousel__track, .slide { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <p class="intro">
+        <strong>Marvin Mayard, urbaniste.</strong>
+        Diplômé du Cycle d’urbanisme de l’École urbaine de Sciences Po Paris et du master Design et numérique de l’Université Paris 1 Panthéon-Sorbonne. Sa pratique cherche à formaliser un langage commun entre concepteurs, acteurs publics, acteurs privés et usagers, avec un intérêt particulier pour les périphéries et celles et ceux qui les habitent.
+        <button type="button" data-about-open style="all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:.13em">À propos</button>,
+        <a href="./Marvin-Mayard-CV.pdf" download>CV ↓</a>,
+        <a href="mailto:marvin.mayard@sciencespo.fr?subject=Demande%20de%20portfolio">portfolio sur demande</a>.
+      </p>
+    </div>
+  </header>
+
+  <main class="carousel-shell" aria-label="Sélection de contenus">
+    <section class="carousel" aria-roledescription="carousel" aria-label="Textes, cartographies, photographies et références">
+      <button class="nav-btn" type="button" data-prev aria-label="Contenu précédent">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M20.5 6.5 11 16l9.5 9.5"/></svg>
+      </button>
+
+      <div class="carousel__viewport">
+        <div class="carousel__track" data-track>
+          <article class="slide" aria-hidden="false">
+            <a class="slide__link" href="https://www.revuesurmesure.fr/contributions/ce-qui-reste-apres-le-lieu" target="_blank" rel="noopener noreferrer" aria-label="Lire Ce qui reste après le lieu sur Revue Sur-Mesure">
+              <img
+                class="slide__image"
+                src="https://revuesurmesure.fr/media/pages/contributions/ce-qui-reste-apres-le-lieu/7829c76e81-1780255947/facade-2020.png"
+                alt="Façade du 24 rue Benjamin Delessert à Pantin, image associée à l’article Ce qui reste après le lieu"
+                loading="eager"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>01</span>
+              <span class="slide__caption-title"><a href="https://www.revuesurmesure.fr/contributions/ce-qui-reste-apres-le-lieu" target="_blank" rel="noopener noreferrer">Ce qui reste après le lieu — Revue Sur-Mesure ↗</a></span>
+              <span class="slide__caption-meta">03.06.2026 · article</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-01.png"
+                alt="Vue architecturale d’un bâtiment d’activités à Laval"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>02</span>
+              <span class="slide__caption-title">Zone d’activités économiques — Laval</span>
+              <span class="slide__caption-meta">architecture · © ARN</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://www.telerama.fr/sortir/quand-la-fleche-d-or-reveillait-l-est-parisien,157920.php" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-02.avif"
+                alt="Le café-concert de la Flèche d’Or à Paris en 2002"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>03</span>
+              <span class="slide__caption-title"><a href="https://www.telerama.fr/sortir/quand-la-fleche-d-or-reveillait-l-est-parisien,157920.php" target="_blank" rel="noopener noreferrer">La Flèche d’Or — Paris, 2002 ↗</a></span>
+              <span class="slide__caption-meta">photo : Gonzalo Quitral / Le Parisien / PHOTOPQR / Maxppp</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://www.visionscarto.net/flanerie-a-pied" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-03.jpg"
+                alt="Cartographie sensible intitulée Le chant des oiseaux et des enfants"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>04</span>
+              <span class="slide__caption-title"><a href="https://www.visionscarto.net/flanerie-a-pied" target="_blank" rel="noopener noreferrer">Le chant des oiseaux et des enfants ↗</a></span>
+              <span class="slide__caption-meta">cartographie sensible · Philippe Paumelle</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://www.lancy.ch/actualites/demarche-de-concertation-du-quartier-des-semailles" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-04.jpg"
+                alt="Démarche de concertation dans le quartier des Semailles à Lancy"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>05</span>
+              <span class="slide__caption-title"><a href="https://www.lancy.ch/actualites/demarche-de-concertation-du-quartier-des-semailles" target="_blank" rel="noopener noreferrer">Démarche de concertation — quartier des Semailles, Lancy ↗</a></span>
+              <span class="slide__caption-meta">photo : Nicolas Dupraz</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-05.jpg"
+                alt="Cartographie de lieux de sociabilité, état 2026"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>06</span>
+              <span class="slide__caption-title">Lieux de sociabilité — état 2026</span>
+              <span class="slide__caption-meta">cartographie · 2026</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://wbarchitectures.be/fr/architects/dds/novacity-i" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-06.jpg"
+                alt="NovaCity I à Anderlecht, ensemble mixte de logements et ateliers"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>07</span>
+              <span class="slide__caption-title"><a href="https://wbarchitectures.be/fr/architects/dds/novacity-i" target="_blank" rel="noopener noreferrer">NovaCity I — Anderlecht ↗</a></span>
+              <span class="slide__caption-meta">DDS+ &amp; bogdan · photo : Laurian Ghinitoiu</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-07.jpg"
+                alt="Usagers au bord d’un plan d’eau dans un paysage boisé"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>08</span>
+              <span class="slide__caption-title">Baignade et espace public au bord de l’eau</span>
+              <span class="slide__caption-meta">photographie</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-08.png"
+                alt="Coupe architecturale et urbaine entre deux bâtiments"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>09</span>
+              <span class="slide__caption-title">Coupe urbaine — étude de transformation</span>
+              <span class="slide__caption-meta">document d’étude</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://www.espazium.ch/fr/actualites/dakar-developpement-urbain-et-patrimoine-metisse" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-09.jpg"
+                alt="Plan historique de la ville de Dakar dressé par Pinet-Laprade en 1862"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>10</span>
+              <span class="slide__caption-title"><a href="https://www.espazium.ch/fr/actualites/dakar-developpement-urbain-et-patrimoine-metisse" target="_blank" rel="noopener noreferrer">Plan de la ville de Dakar — Pinet-Laprade, 1862 ↗</a></span>
+              <span class="slide__caption-meta">archive : Gallica</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://panoramadelart.com/analyse/allegorie-du-bon-gouvernement" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-10.webp"
+                alt="Détail des Effets du Bon Gouvernement sur la campagne d’Ambrogio Lorenzetti"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>11</span>
+              <span class="slide__caption-title"><a href="https://panoramadelart.com/analyse/allegorie-du-bon-gouvernement" target="_blank" rel="noopener noreferrer">Effets du Bon Gouvernement sur la campagne — 1338–1339 ↗</a></span>
+              <span class="slide__caption-meta">Ambrogio Lorenzetti · Palazzo Pubblico, Sienne</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-11.png"
+                alt="Cartographie de maîtrise foncière et d’activités commerciales"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>12</span>
+              <span class="slide__caption-title">Maîtrise foncière et activités commerciales</span>
+              <span class="slide__caption-meta">cartographie foncière</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-12.jpg"
+                alt="Voies de tramway et cheminements piétons dans le quartier des Semailles à Lancy"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>13</span>
+              <span class="slide__caption-title">Quartier des Semailles — Lancy</span>
+              <span class="slide__caption-meta">photographie de terrain</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-13.png"
+                alt="Planche chronologique montrant l’évolution d’un rez-de-chaussée de 2008 à 2022"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>14</span>
+              <span class="slide__caption-title">Évolution d’un rez-de-chaussée commercial — 2008–2022</span>
+              <span class="slide__caption-meta">images : Google Street View</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-14.png"
+                alt="Équipement contemporain derrière un arrêt de bus à la Cité Balzac"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>15</span>
+              <span class="slide__caption-title">Équipement et paysage — Cité Balzac</span>
+              <span class="slide__caption-meta">référence urbaine</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-15.png"
+                alt="Maisons basses et habitat individuel dans un tissu urbain dense"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>16</span>
+              <span class="slide__caption-title">Habitat individuel dans un tissu dense</span>
+              <span class="slide__caption-meta">référence urbaine</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-16.png"
+                alt="Schéma des acteurs institutionnels et opérateurs de la ligne 3 Poissy-Orgeval"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>17</span>
+              <span class="slide__caption-title">Schéma d’acteurs — Ligne 3 Poissy–Orgeval</span>
+              <span class="slide__caption-meta">mobilité · gouvernance</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-17.png"
+                alt="Vue satellite de Yasny avec un périmètre sélectionné"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>18</span>
+              <span class="slide__caption-title">Yasny — lecture satellite</span>
+              <span class="slide__caption-meta">imagerie satellite</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-18.png"
+                alt="Vue aérienne de la rive gauche du Léman à Genève"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>19</span>
+              <span class="slide__caption-title">Rive gauche du Léman — Genève</span>
+              <span class="slide__caption-meta">imagerie © Google</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-19.png"
+                alt="Diagramme circulaire montrant la répartition de commerces par catégorie"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>20</span>
+              <span class="slide__caption-title">Répartition des commerces par catégorie</span>
+              <span class="slide__caption-meta">datavisualisation · commerce</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://urba-nova.com/repenser-les-rez-de-chaussee-en-ville-dans-leur-conception-programmation-gestion-et-animation/" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-20.png"
+                alt="Schéma de la chaîne de valeur des rez-de-chaussée, de la conception à l’occupation"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>21</span>
+              <span class="slide__caption-title"><a href="https://urba-nova.com/repenser-les-rez-de-chaussee-en-ville-dans-leur-conception-programmation-gestion-et-animation/" target="_blank" rel="noopener noreferrer">Chaîne de valeur des rez-de-chaussée ↗</a></span>
+              <span class="slide__caption-meta">© Urbanova</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-21.png"
+                alt="Petite structure contemporaine insérée dans une rue dense et animée"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>22</span>
+              <span class="slide__caption-title">Activation d’un rez-de-chaussée en tissu dense</span>
+              <span class="slide__caption-meta">référence architecturale</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-22.png"
+                alt="Façade d’habitat collectif donnant sur un espace végétalisé"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>23</span>
+              <span class="slide__caption-title">Habitat collectif et végétation spontanée</span>
+              <span class="slide__caption-meta">référence paysagère</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://www.lancy.ch/actualites/demarche-de-concertation-du-quartier-des-semailles" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-23.png"
+                alt="Axonométrie programmatique du quartier des Semailles à Lancy"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>24</span>
+              <span class="slide__caption-title"><a href="https://www.lancy.ch/actualites/demarche-de-concertation-du-quartier-des-semailles" target="_blank" rel="noopener noreferrer">Vision programmatique du quartier des Semailles — Lancy ↗</a></span>
+              <span class="slide__caption-meta">AETC · Ville de Lancy</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-24.png"
+                alt="Maquette détaillée d’une façade d’habitat collectif"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>25</span>
+              <span class="slide__caption-title">Maquette de façade — habitat collectif</span>
+              <span class="slide__caption-meta">référence architecturale</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://www.lancy.ch/actualites/demarche-de-concertation-du-quartier-des-semailles" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-25.png"
+                alt="Quatre schémas de réseaux programmatiques pour le quartier des Semailles à Lancy"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>26</span>
+              <span class="slide__caption-title"><a href="https://www.lancy.ch/actualites/demarche-de-concertation-du-quartier-des-semailles" target="_blank" rel="noopener noreferrer">Réseaux programmatiques — quartier des Semailles, Lancy ↗</a></span>
+              <span class="slide__caption-meta">AETC · Ville de Lancy</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://www.journalismfund.eu/supported-projects?field_themes_target_id%5B44%5D=44&amp;page=50" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-26.png"
+                alt="Carte et visualisation des coûts liés au contrôle des frontières européennes"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>27</span>
+              <span class="slide__caption-title"><a href="https://www.journalismfund.eu/supported-projects?field_themes_target_id%5B44%5D=44&amp;page=50" target="_blank" rel="noopener noreferrer">Coûts et dispositifs du contrôle des frontières européennes ↗</a></span>
+              <span class="slide__caption-meta">The Migrants Files · Follow the Money</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <div class="slide__visual">
+              <img
+                class="slide__image"
+                src="./assets/image-27.png"
+                alt="Carte du réseau du télégraphe Chappe en France"
+                loading="lazy"
+              >
+            </div>
+            <p class="slide__caption">
+              <span>28</span>
+              <span class="slide__caption-title">Le réseau du télégraphe Chappe en France</span>
+              <span class="slide__caption-meta">cartographie historique</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <a class="slide__link" href="https://divisare.com/projects/473304-nomos-architects-studio-ten-tan-xiao-tanart-community" target="_blank" rel="noopener noreferrer">
+              <img
+                class="slide__image"
+                src="./assets/image-28.jpg"
+                alt="TanArt Community à Xi’an, reconversion d’une ancienne chaufferie"
+                loading="lazy"
+              >
+            </a>
+            <p class="slide__caption">
+              <span>29</span>
+              <span class="slide__caption-title"><a href="https://divisare.com/projects/473304-nomos-architects-studio-ten-tan-xiao-tanart-community" target="_blank" rel="noopener noreferrer">TanArt Community — Xi’an, 2022 ↗</a></span>
+              <span class="slide__caption-meta">Nomos Architects · photo : STUDIO TEN — Tan Xiao</span>
+            </p>
+          </article>
+
+          <article class="slide" aria-hidden="true">
+            <button class="slide__visual" type="button" data-about-open style="appearance:none;border:0;background:transparent;padding:0;cursor:pointer;text-align:inherit">
+              <img
+                class="slide__image slide__image--portrait"
+                src="https://revuesurmesure.fr/media/pages/authors/marvin-mayard/5364896b04-1780249690/marvin-mayard-bio.png"
+                alt="Portrait de Marvin Mayard"
+                loading="lazy"
+              >
+            </button>
+            <p class="slide__caption">
+              <span>30</span>
+              <span class="slide__caption-title"><button type="button" data-about-open style="all:unset;cursor:pointer">À propos — pratique et parcours</button></span>
+              <span class="slide__caption-meta">urbanisme · territoires</span>
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <button class="nav-btn" type="button" data-next aria-label="Contenu suivant">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="m11.5 6.5 9.5 9.5-9.5 9.5"/></svg>
+      </button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><span data-current>01</span> / <span data-total>03</span></div>
+    <div class="footer-right">Textes · Cartographies · Photographies · Références<br>© <span data-year></span> Marvin Mayard</div>
+  </footer>
+
+  <aside class="about-panel" data-about aria-hidden="true">
+    <button class="panel-close" type="button" data-about-close aria-label="Fermer la présentation">Fermer ×</button>
+    <div class="about-grid">
+      <div class="about-copy">
+        <p>Urbaniste formé entre Paris et Genève, Marvin Mayard travaille à l’articulation de la stratégie urbaine, de la programmation et de la conduite de projet. Passé par le design et par le développement de tiers-lieux en Seine-Saint-Denis, il s’intéresse aux formes de coopération qui permettent de traduire les politiques publiques en projets situés.</p>
+      </div>
+      <div class="about-meta">
+        <p>Cette plateforme rassemble des articles, photographies, cartographies et notes autour des villes et des territoires. Elle ne constitue pas un portfolio de maîtrise d’œuvre&nbsp;: le CV est téléchargeable et une sélection de références professionnelles peut être transmise sur demande.</p>
+        <p>
+          <a href="./Marvin-Mayard-CV.pdf" download>Télécharger le CV</a><br>
+          <a href="mailto:marvin.mayard@sciencespo.fr?subject=Demande%20de%20portfolio">Demander le portfolio</a><br>
+          <a href="https://www.linkedin.com/in/marvin-mayard/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><br>
+          <a href="https://www.revuesurmesure.fr/authors/marvin-mayard" target="_blank" rel="noopener noreferrer">Revue Sur-Mesure ↗</a>
+        </p>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const track = document.querySelector('[data-track]');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const current = document.querySelector('[data-current]');
+      const total = document.querySelector('[data-total]');
+      const prev = document.querySelector('[data-prev]');
+      const next = document.querySelector('[data-next]');
+      const about = document.querySelector('[data-about]');
+      const openers = document.querySelectorAll('[data-about-open]');
+      const close = document.querySelector('[data-about-close]');
+      let index = 0;
+      let touchStart = null;
+
+      document.querySelector('[data-year]').textContent = new Date().getFullYear();
+      total.textContent = String(slides.length).padStart(2, '0');
+
+      const render = () => {
+        track.style.transform = `translateX(${-index * 100}%)`;
+        slides.forEach((slide, i) => slide.setAttribute('aria-hidden', i === index ? 'false' : 'true'));
+        current.textContent = String(index + 1).padStart(2, '0');
+      };
+
+      const go = (delta) => {
+        index = (index + delta + slides.length) % slides.length;
+        render();
+      };
+
+      prev.addEventListener('click', () => go(-1));
+      next.addEventListener('click', () => go(1));
+
+      document.addEventListener('keydown', (event) => {
+        if (about.dataset.open === 'true') {
+          if (event.key === 'Escape') closeAbout();
+          return;
+        }
+        if (event.key === 'ArrowLeft') go(-1);
+        if (event.key === 'ArrowRight') go(1);
+      });
+
+      const viewport = document.querySelector('.carousel__viewport');
+      viewport.addEventListener('touchstart', (event) => {
+        touchStart = event.changedTouches[0].clientX;
+      }, {passive: true});
+      viewport.addEventListener('touchend', (event) => {
+        if (touchStart === null) return;
+        const dx = event.changedTouches[0].clientX - touchStart;
+        touchStart = null;
+        if (Math.abs(dx) > 45) go(dx > 0 ? -1 : 1);
+      }, {passive: true});
+
+      const openAbout = () => {
+        about.dataset.open = 'true';
+        about.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        close.focus();
+      };
+      const closeAbout = () => {
+        about.dataset.open = 'false';
+        about.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      };
+
+      openers.forEach(button => button.addEventListener('click', openAbout));
+      close.addEventListener('click', closeAbout);
+      about.addEventListener('click', (event) => {
+        if (event.target === about) closeAbout();
+      });
+
+      root.classList.add('js');
+      render();
+    })();
+  </script>
+</body>
+</html>
